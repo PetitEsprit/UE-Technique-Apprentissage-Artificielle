@@ -1,0 +1,5 @@
+I. Apprentissage supervisé : Feature engineering et Classification
+
+2.	L'accuracy du knn et Cart sont tous deux très proche des 70%
+	Il n'est pas évident que l'un soit mieux que l'autre.
+3.	Génralement, un peu mieux en effet
