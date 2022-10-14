@@ -18,7 +18,7 @@ df = pd.read_csv('credit_scoring.csv', sep=';')
 data = np.array_split(df.values, [-1, ], axis=1)
 
 """ Showing """
-#print("Taille d'échantillon: ", data[0].shape)
+print("Taille d'échantillon: ", data[0].shape)
 #plt.hist(data[1])
 #plt.show()
 
@@ -52,10 +52,12 @@ print("Accuracy Score CART Tree normalized: ", accuracy_score(cart.predict(data_
 k = 5
 pca = PCA()
 pca.fit(data[0])
-data_test_reduc = pca.transform(data_test_norm)
 data_train_reduc = pca.transform(data_train_norm)
-data_test_reduc = np.concatenate([data_test_reduc[:k], data_test])
-....
-print(data_test_reduc)
+data_test_reduc = pca.transform(data_test_norm)
+data_train_reduc = np.concatenate([np.hsplit(data_train_reduc, np.array([k, ]))[0], data_train_norm], axis=1)
+data_test_reduc = np.concatenate([np.hsplit(data_test_reduc, np.array([k, ]))[0], data_test_norm], axis=1)
 
-
+""""""
+neigh = KNeighborsClassifier(n_neighbors=5)
+neigh.fit(data_train_reduc, status_train)
+print("Accuracy Score Knn(k = 5) normalized PCA: ", accuracy_score(neigh.predict(data_test_reduc), status_test))
