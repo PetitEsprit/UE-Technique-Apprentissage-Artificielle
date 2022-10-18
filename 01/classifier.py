@@ -58,7 +58,6 @@ data_train_reduc = np.concatenate([np.hsplit(data_train_reduc, np.array([k, ]))[
 data_test_reduc = np.concatenate([np.hsplit(data_test_reduc, np.array([k, ]))[0], data_test_norm], axis=1)
 
 """"""
-#Rajoute de la précision sauf pour le diagramme de Cart qui en perd ?!
 neigh = KNeighborsClassifier(n_neighbors=5)
 neigh.fit(data_train_reduc, status_train)
 print("Accuracy Score Knn(k = 5) normalized PCA: ", accuracy_score(neigh.predict(data_test_reduc), status_test))
